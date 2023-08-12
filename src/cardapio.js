@@ -1,6 +1,4 @@
 class Cardapio {
-  itens;
-
   constructor() {
     this.itens = {
       cafe: { descricao: "Café", valor: 3.0, extras: ["chantily"] },
@@ -23,14 +21,9 @@ class Cardapio {
       return false;
     }
 
-    let status = false;
-    for (const item of itensSelecionados) {
-      if (this.itens[item].extras.includes(itemExtra)) {
-        status = true;
-      }
-    }
-
-    return status;
+    return itensSelecionados.some((item) =>
+      this.itens[item].extras.includes(itemExtra)
+    );
   }
 }
 

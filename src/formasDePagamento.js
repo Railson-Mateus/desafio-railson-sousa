@@ -1,5 +1,4 @@
 class FormasDePagamento {
-  formas;
   constructor() {
     this.formas = ["dinheiro", "debito", "credito"];
   }
@@ -8,14 +7,16 @@ class FormasDePagamento {
     return this.formas.includes(forma);
   }
 
-  calcularAcrescimo(valor) {
-    const acrescimo = valor * 0.03;
-    return (valor += acrescimo);
-  }
-
-  calcularDesconto(valor) {
-    const desconto = valor * 0.05;
-    return (valor -= desconto);
+  calcularValorComMetodoPagamento(valor, metodoPagamento) {
+    if (metodoPagamento === "dinheiro") {
+      const desconto = valor * 0.05;
+      return valor - desconto;
+    } else if (metodoPagamento === "credito") {
+      const acrescimo = valor * 0.03;
+      return valor + acrescimo;
+    } else if (metodoPagamento === "debito") {
+      return valor;
+    }
   }
 }
 
